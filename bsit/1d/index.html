@@ -1,94 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="color-scheme:dark;>
 <head>
 <meta charset="UTF-8">
-<title>1D</title>
+<title>1D - Dark Mode Gist</title>
+
 
 <style>
-:root {
-    --dim: #13131a;
-    --dark: #0c0c10;
-    --border-glow: rgba(255, 255, 255, 0.08);
-    --text: #e5e5e5;
-    --link: #6aa6ff;
-}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-html, body {
-    margin: 0;
-    padding: 0;
-    background: var(--dark);
-    color: var(--text);
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+body, .gist-container, p, h1, h2, h3, a, button {
+    font-family: 'Inter', sans-serif;
 }
-
-body {
-padding:10px;
-margin: auto;
-max-width:799px;
-}
-#app {
-  max-width: 800px;
-    margin: 40px auto;
-    padding: 24px;
-    background: var(--dim);
-    border-radius: 10px;
-    
+:root{
+--dim:#13131a;
+--dark:#0c0c10;
+--text:#fafaff;
+--link:#6aa6ff;
 }
 
 
-a {
-padding:10px 15px;
-background: var(--link);
-border-radius:15px;
+body {background:var(--dark)!important; border-radius:10px;padding:20px;gap:10px;}
+body .gist-meta, .anchor{display:none !important;}
+
+body .gist a{
+
+margin-top:15px;
+padding: 15px 20px;
+    background: var(--link);
+    border-radius: 15px;
     color: #181c20;
     text-decoration: none;
-}
-a:hover {
-    text-decoration: underline;
+display: block;
+
+
 }
 
-pre, code {
-    background: #0a0a0f;
-    padding: 4px 6px;
-    border-radius: 4px;
+body .gist .markdown-body pre,.gist .markdown-body code{background:#0a0a0f!important;padding:4px 6px;border-radius:4px;}
+
+h1 {
+font-size:38px;
+margin:0;
+padding:0;
 }
 
-.loading {
-    opacity: 0.6;
+h2 {
+font-size:22px;
+margin:0;
+padding:0;
 }
+
+
 </style>
+
 </head>
 <body>
-
-<div id="app" class="loading">Loading markdown…</div>
-
-<!-- Markdown parser -->
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-
+<script src="https://gist.github.com/actwu/ae1118a75a45e14e4b5817e2b90c24cb.js"></script>
 <script>
-const MARKDOWN_URL =
-  "https://gist.githubusercontent.com/actwu/ae1118a75a45e14e4b5817e2b90c24cb/raw/9d538ac7a87bf9338750d9993a2fed356a5242fc/read.md";
+/
+const gcn = document.querySelector('link[href="https://github.githubassets.com/assets/gist-embed-68783a026c0c.css"]');
 
-async function loadMarkdown() {
-    const container = document.getElementById("app");
-
-    try {
-        const res = await fetch(MARKDOWN_URL);
-        if (!res.ok) throw new Error("Failed to fetch markdown");
-
-        const markdown = await res.text();
-        const html = marked.parse(markdown);
-
-        container.innerHTML = html;
-        container.classList.remove("loading");
-    } catch (err) {
-        container.innerHTML = "<p>❌ Failed to load markdown.</p>";
-        console.error(err);
-    }
+if (gcn) {
+    gcn.remove();
 }
 
-loadMarkdown();
+document.querySelectorAll('p').forEach(p => {
+    if (p.textContent.trim() === ".") {
+        p.style.opacity = "0";
+    }
+});
 </script>
-
 </body>
 </html>
