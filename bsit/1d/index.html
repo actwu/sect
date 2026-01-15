@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>1D</title>
+
+<style>
+:root {
+    --dim: #13131a;
+    --dark: #0c0c10;
+    --border-glow: rgba(255, 255, 255, 0.08);
+    --text: #e5e5e5;
+    --link: #6aa6ff;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--dark);
+    color: var(--text);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+padding:10px;
+margin: auto;
+max-width:799px;
+}
+#app {
+  max-width: 800px;
+    margin: 40px auto;
+    padding: 24px;
+    background: var(--dim);
+    border-radius: 10px;
+    
+}
+
+
+a {
+padding:10px 15px;
+background: var(--link);
+border-radius:15px;
+    color: #181c20;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+pre, code {
+    background: #0a0a0f;
+    padding: 4px 6px;
+    border-radius: 4px;
+}
+
+.loading {
+    opacity: 0.6;
+}
+</style>
+</head>
+<body>
+
+<div id="app" class="loading">Loading markdown…</div>
+
+<!-- Markdown parser -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+<script>
+const MARKDOWN_URL =
+  "https://gist.githubusercontent.com/actwu/ae1118a75a45e14e4b5817e2b90c24cb/raw/9d538ac7a87bf9338750d9993a2fed356a5242fc/read.md";
+
+async function loadMarkdown() {
+    const container = document.getElementById("app");
+
+    try {
+        const res = await fetch(MARKDOWN_URL);
+        if (!res.ok) throw new Error("Failed to fetch markdown");
+
+        const markdown = await res.text();
+        const html = marked.parse(markdown);
+
+        container.innerHTML = html;
+        container.classList.remove("loading");
+    } catch (err) {
+        container.innerHTML = "<p>❌ Failed to load markdown.</p>";
+        console.error(err);
+    }
+}
+
+loadMarkdown();
+</script>
+
+</body>
+</html>
