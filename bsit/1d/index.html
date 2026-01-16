@@ -1,3 +1,4 @@
+
  <!DOCTYPE html>
 <html lang="en" style="color-scheme:dark;">
 <head>
@@ -193,8 +194,9 @@ body .gist .markdown-body pre, .gist .markdown-body code {
 <script src="https://gist.github.com/actwu/ae1118a75a45e14e4b5817e2b90c24cb.js"></script>
 
 <div id="nav">
-  <button id="btn-a" class="nav-btn active" onmousedown="showFile('file-a-md', this)" title="Home"><i class="fa-solid fa-house"></i></button>
-  <button id="btn-b" class="nav-btn" onmousedown="showFile('file-b-md', this)" title="News"><i class="fa-solid fa-circle-exclamation"></i></button>
+  <button id="btn-a" class="nav-btn active" onmousedown="showFile('file-a-md', this)" title="Home"><i class="fa-solid fa-tent"></i></button>
+  <button id="btn-b" class="nav-btn" onmousedown="showFile('file-b-md', this)" title="News"><i class="fa-solid fa-compass"></i></button>
+  <button id="btn-c" class="nav-btn" onmousedown="showFile('file-c-md', this)" title="Info"><i class="fa-solid fa-circle-info"></i></button>
 </div>
 
 <script>
@@ -210,8 +212,11 @@ function showFile(id, btn){
     playTap();
     const fA = document.getElementById("file-a-md");
     const fB = document.getElementById("file-b-md");
+ 
+    const fC = document.getElementById("file-c-md");
     if(fA) fA.setAttribute("hidden", "");
     if(fB) fB.setAttribute("hidden", "");
+     if(fC) fC.setAttribute("hidden", "");
     const target = document.getElementById(id);
     if(target) target.removeAttribute("hidden");
     document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
@@ -257,6 +262,8 @@ window.onload = () => {
         document.querySelectorAll('p').forEach(p => { if(p.textContent.trim() === ".") p.style.display = "none"; });
         const fileB = document.getElementById("file-b-md");
         if(fileB) fileB.setAttribute("hidden", "");
+      const fileC = document.getElementById("file-c-md");
+        if(fileC) fileB.setAttribute("hidden", "");
         document.getElementById('loader').classList.add('fade-out');
     }, 800); 
 };
@@ -264,3 +271,6 @@ window.onload = () => {
 <check><script>(function(){var _0x3a2f=function(_0x1,_0x2){return _0x1+_0x2};var _0xk=new Set(["F12","I","J","U","S"]);document.addEventListener("keydown",function(e){if(e.key==="F12"||(e.ctrlKey&&_0xk.has(e.key.toUpperCase()))||(e.ctrlKey&&e.shiftKey&&["I","J","C"].includes(e.key.toUpperCase()))){e.preventDefault();e.stopPropagation();return false}},true);document.addEventListener("contextmenu",function(e){e.preventDefault()},true);function _0xd(){var t1=performance.now();debugger;var t2=performance.now();return(t2-t1)>100}function _0xn(){try{document.documentElement.innerHTML="";document.head&&document.head.remove();document.body&&document.body.remove()}catch(e){}for(;;){}}setInterval(function(){if(_0xd())_0xn()},400)})();</script></check>
 </body>
 </html>
+
+
+Back
